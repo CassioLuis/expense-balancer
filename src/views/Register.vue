@@ -36,16 +36,14 @@
     >
       <template #label>
         Eu li e concordo com os
-        <v-btn
+        <a
           target="_blank"
           href="https://vuetifyjs.com"
-          elevation="0"
-          variant="text"
-          color="orange lighten-4"
+          class="font-semibold"
           @click.stop
         >
           Termos de Uso
-        </v-btn>
+        </a>
       </template>
     </v-checkbox>
     <v-row>
@@ -54,11 +52,9 @@
         class="flex flex-col gap-4"
       >
         <v-btn
-          variant="flat"
-          elevation="0"
-          color="orange lighten-4"
+          variant="tonal"
         >
-          register
+          Register
         </v-btn>
         <div class="flex justify-center items-center gap-1">
           <p>
@@ -66,11 +62,9 @@
           </p>
           <v-btn
             variant="plain"
-            color="orange lighten-4"
-            elevation="0"
             @click.prevent="router.push('/login')"
           >
-            acessar conta
+            Acessar Conta
           </v-btn>
         </div>
       </v-col>

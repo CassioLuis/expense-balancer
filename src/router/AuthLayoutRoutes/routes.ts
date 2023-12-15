@@ -1,4 +1,4 @@
-import { Login, Register } from '@/views'
+import { Login, Register, ResetPassword } from '@/views'
 
 export default [
   {
@@ -11,6 +11,12 @@ export default [
     path: '/registration',
     name: 'Register',
     component: Register,
+    meta: { layout: 'AuthLayout' }
+  },
+  {
+    path: '/resetPassword',
+    name: 'ResetPassword',
+    component: ResetPassword,
     meta: { layout: 'AuthLayout' }
   }
 ]

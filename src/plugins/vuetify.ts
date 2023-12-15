@@ -8,21 +8,12 @@ import { createVuetify } from 'vuetify'
 export default createVuetify({
   defaults: {
     VBtn: {
-      elevation: '1',
+      elevation: '0',
       class: [
         'rounded-md',
         'tracking-normal',
-        'capitalize'
-      ],
-      variant: {
-        flat: {
-          elevation: '5',
-          class: [
-            'shadow-sm',
-            'bg-white'
-          ]
-        }
-      }
+        'normal-case'
+      ]
     },
     VCheckbox: {
       density: 'compact',

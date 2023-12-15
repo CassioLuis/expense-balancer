@@ -1,9 +1,13 @@
 <template>
-  <v-container class="flex justify-center items-center h-full">
+  <v-container class="flex justify-center items-center h-screen">
     <v-col
-      sm="9"
-      md="6"
-      lg="5"
+      class="p-0"
+      xs="12"
+      sm="8"
+      md="5"
+      lg="4"
+      xl="3"
+      xxl="2"
     >
       <v-card
         class="p-10 border shadow-sm"
@@ -13,7 +17,7 @@
           class="mb-6"
         >
           <div>
-            <h3 class="headline mb-0 text-center">
+            <h3 class="mb-0 text-center">
               Login
             </h3>
           </div>

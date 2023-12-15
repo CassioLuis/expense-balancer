@@ -29,15 +29,13 @@
           label="Lembrar Senha"
           type="checkbox"
           required
-          color="primary"
           class="p-0 flex items-center"
         />
         <v-btn
           variant="plain"
-          color="orange lighten-4"
-          elevation="0"
+          @click.prevent="router.push('/resetPassword')"
         >
-          esqueceu sua senha ?
+          Esqueceu sua senha ?
         </v-btn>
       </v-col>
     </v-row>
@@ -47,20 +45,16 @@
         class="flex flex-col gap-4"
       >
         <v-btn
-          class="w-full shadow-sm text-white"
-          variant="flat"
-          elevation="0"
-          color="orange lighten-4"
+          class="w-full shadow-sm"
+          variant="tonal"
         >
-          entrar
+          Entrar
         </v-btn>
         <v-btn
           variant="plain"
-          color="orange lighten-4"
-          elevation="0"
           @click.prevent="router.push('/registration')"
         >
-          cadastrar-se
+          Cadastrar-se
         </v-btn>
       </v-col>
     </v-row>
@@ -83,17 +77,14 @@
       >
         <v-btn
           variant="tonal"
-          elevation="0"
           icon="mdi mdi-google"
         />
         <v-btn
           variant="tonal"
-          elevation="0"
           icon="mdi mdi-facebook"
         />
         <v-btn
           variant="tonal"
-          elevation="0"
           icon="mdi mdi-linkedin"
         />
       </v-col>
