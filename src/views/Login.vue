@@ -1,21 +1,57 @@
+<script lang="ts" setup>
+import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router';
+import { AuthService } from '../service'
+
+const router = useRouter()
+
+const showPassword = ref<boolean>(false)
+
+const credentials = reactive<any>({
+  email: '',
+  password: ''
+})
+
+async function login () {
+  try {
+    await AuthService.signin(credentials)
+    return router.push('/dashboard')
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+</script>
+
 <template>
-  <form>
+  <v-form @submit.prevent="login">
+    <v-row>
+      <v-col cols="12">
+        <h3
+          class="mb-5 text-center py-4 text-2xl font-bold bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent"
+        >
+          Login
+        </h3>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col
         cols="12"
         class="py-0"
       >
         <v-text-field
-          label="Name"
-          data-vv-name="name"
+          label="Email"
+          data-vv-name="email"
           required
+          v-model="credentials.email"
         />
         <v-text-field
           label="Senha"
           required
-          :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-          :type="visible ? 'text' : 'password'"
-          @click:append-inner="visible = !visible"
+          :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
+          :type="showPassword ? 'text' : 'password'"
+          @click:append-inner="showPassword = !showPassword"
+          v-model="credentials.password"
         />
       </v-col>
     </v-row>
@@ -47,6 +83,7 @@
         <v-btn
           class="w-full shadow-sm"
           variant="tonal"
+          type="submit"
         >
           Entrar
         </v-btn>
@@ -89,14 +126,5 @@
         />
       </v-col>
     </v-row>
-  </form>
+  </v-form>
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router';
-
-const router = useRouter()
-
-const visible = ref(false)
-</script>

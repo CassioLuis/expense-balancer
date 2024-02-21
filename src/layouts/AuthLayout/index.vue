@@ -13,15 +13,6 @@
         class="p-10 border shadow-sm"
         elevation="0"
       >
-        <v-card-title
-          class="mb-6"
-        >
-          <div>
-            <h3 class="mb-0 text-center">
-              Login
-            </h3>
-          </div>
-        </v-card-title>
         <router-view />
       </v-card>
     </v-col>

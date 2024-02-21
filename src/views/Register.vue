@@ -1,5 +1,21 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const visible = ref(false)
+</script>
+
 <template>
   <form>
+    <v-row>
+      <v-col cols="12">
+        <h3 class="mb-5 text-center py-4 text-2xl font-bold bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">
+          Registro
+        </h3>
+      </v-col>
+    </v-row>
     <v-text-field
       label="Name"
       required
@@ -51,9 +67,7 @@
         cols="12"
         class="flex flex-col gap-4"
       >
-        <v-btn
-          variant="tonal"
-        >
+        <v-btn variant="tonal">
           Register
         </v-btn>
         <div class="flex justify-center items-center gap-1">
@@ -71,11 +85,3 @@
     </v-row>
   </form>
 </template>
-<script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-
-const visible = ref(false)
-</script>

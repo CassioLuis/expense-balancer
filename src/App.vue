@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
+
+const { currentRoute } = useRouter()
+
+const layout = computed(() => currentRoute.value.meta.layout || 'DefaultLayout')
+</script>
+
 <template>
   <v-app theme="dark">
     <v-main>
@@ -7,12 +16,3 @@
     </v-main>
   </v-app>
 </template>
-
-<script setup lang="ts">
-import { computed } from 'vue';
-import { useRouter } from 'vue-router';
-
-const { currentRoute } = useRouter()
-
-const layout = computed(() => currentRoute.value.meta.layout || 'DefaultLayout')
-</script>

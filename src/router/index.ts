@@ -2,9 +2,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { LandingPage } from '@/views'
 import AuthLayoutRoutes from './AuthLayoutRoutes/routes'
+import DashboardLayoutRoutes from './DashboardLayoutRoutes/routes'
 
 const routes = [
   ...AuthLayoutRoutes,
+  ...DashboardLayoutRoutes,
   {
     path: '/',
     name: 'LandingPage',
@@ -13,7 +15,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
 
