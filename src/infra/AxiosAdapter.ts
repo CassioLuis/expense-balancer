@@ -1,13 +1,13 @@
-import axios from "axios";
-import IHttpAdapter from "./IHttpAdapter";
+import axios from 'axios'
+import IHttpAdapter from './IHttpAdapter'
 
 export default class AxiosAdapter implements IHttpAdapter {
 
-  get (url: any) {
-    return axios({ url, method: 'get' })
+  async get (url: string, params: any) {
+    return await axios.get(url, params)
   }
 
-  post (url: any, data: any) {
-    return axios({ url, method: 'post', data })
+  async post (url: string, data: object) {
+    return await axios.post(url, data)
   }
 }

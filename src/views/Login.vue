@@ -1,23 +1,35 @@
 <script lang="ts" setup>
-import { ref, reactive } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router';
 import AxiosAdapter from '../infra/AxiosAdapter'
 import { AuthService } from '@/service';
+import { useForm, useField } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+import * as z from 'zod'
 
 const router = useRouter()
 
 const showPassword = ref<boolean>(false)
 
-const credentials = reactive<any>({
-  email: 'cassiocaruzo@gmail.com',
-  password: '123456'
-})
+const validationSchema = toTypedSchema(
+  z.object({
+    email: z.string().email({ message: 'E-mail inválido' }),
+    password: z.string().min(6, { message: 'Senha inválida' })
+  })
+)
+
+const { handleSubmit, errors, meta, isSubmitting } = useForm({ validationSchema })
+
+const { value: email } = useField('email')
+const { value: password } = useField('password')
+
+const onSubmit = handleSubmit(login)
 
 const apiService = new AuthService(new AxiosAdapter())
 
 async function login () {
   try {
-    await apiService.signin({ credentials })
+    await apiService.signin({ email: email.value, password: password.value })
     return router.push('/dashboard')
   } catch (e) {
     console.log(e)
@@ -27,7 +39,7 @@ async function login () {
 </script>
 
 <template>
-  <v-form @submit.prevent="login">
+  <v-form @submit.prevent="onSubmit">
     <v-row>
       <v-col cols="12">
         <h3
@@ -43,10 +55,11 @@ async function login () {
         class="py-0"
       >
         <v-text-field
+          class="mb-4"
           label="Email"
-          data-vv-name="email"
           required
-          v-model="credentials.email"
+          :error-messages="errors.email"
+          v-model="email"
         />
         <v-text-field
           label="Senha"
@@ -54,7 +67,8 @@ async function login () {
           :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
           :type="showPassword ? 'text' : 'password'"
           @click:append-inner="showPassword = !showPassword"
-          v-model="credentials.password"
+          :error-messages="errors.password"
+          v-model="password"
         />
       </v-col>
     </v-row>
@@ -87,8 +101,13 @@ async function login () {
           class="w-full shadow-sm"
           variant="tonal"
           type="submit"
+          :disabled="!meta.valid"
         >
-          Entrar
+          <span v-if="!isSubmitting">Entrar</span>
+          <span
+            v-else
+            class="mdi mdi-loading"
+          />
         </v-btn>
         <v-btn
           variant="plain"
