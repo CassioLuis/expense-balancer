@@ -1,20 +1,23 @@
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router';
-import { AuthService } from '../service'
+import AxiosAdapter from '../infra/AxiosAdapter'
+import { AuthService } from '@/service';
 
 const router = useRouter()
 
 const showPassword = ref<boolean>(false)
 
 const credentials = reactive<any>({
-  email: '',
-  password: ''
+  email: 'cassiocaruzo@gmail.com',
+  password: '123456'
 })
+
+const apiService = new AuthService(new AxiosAdapter())
 
 async function login () {
   try {
-    await AuthService.signin(credentials)
+    await apiService.signin({ credentials })
     return router.push('/dashboard')
   } catch (e) {
     console.log(e)

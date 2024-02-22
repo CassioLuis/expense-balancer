@@ -1,4 +1,4 @@
-import { mount } from '@vue/test-utils'
+// import { mount } from '@vue/test-utils'
 
 function sleep (time: number) {
   return new Promise((resolve) => {
@@ -9,5 +9,5 @@ function sleep (time: number) {
 }
 
 test("Deve logar-se" , async () => {
-
+  sleep(20)
 })

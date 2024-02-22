@@ -1,10 +1,12 @@
-import axios from 'axios'
+import IHttpAdapter from '@/infra/IHttpAdapter'
 import env from './env'
 
-class AuthService {
+export default class AuthService {
+  constructor(private readonly httpAdapter: IHttpAdapter) {
+  }
+
   async signin (credentials: any) {
-    return axios.post(`${env.BASE_URL}/auth`, credentials)
+    console.log(env)
+    return this.httpAdapter.post(`${env.BASE_URL}/auth`, credentials)
   }
 }
-
-export default new AuthService()
