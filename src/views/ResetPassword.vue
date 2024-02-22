@@ -12,7 +12,7 @@ const email = ref<string>('')
     <v-row>
       <v-col cols="12">
         <h3
-          class="mb-5 text-center py-4 text-2xl font-bold bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent"
+          class="mb-5 text-center py-4 text-3xl font-bold bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent"
         >
           Esqueceu sua senha?
         </h3>

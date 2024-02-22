@@ -1,23 +1,17 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, inject } from 'vue'
 import { useRouter } from 'vue-router';
-import AxiosAdapter from '../infra/AxiosAdapter'
-import { AuthService } from '@/service';
 import { useForm, useField } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
-import * as z from 'zod'
-
-const router = useRouter()
 
 const showPassword = ref<boolean>(false)
+const router = useRouter()
 
-const validationSchema = toTypedSchema(
-  z.object({
-    email: z.string().email({ message: 'E-mail inválido' }),
-    password: z.string().min(6, { message: 'Senha inválida' })
-  })
-)
+const { Loader2 }: any = inject('icons')
+const authService: any = inject('authService')
+const zodValidation: any = inject('zodSchemas')
 
+const validationSchema = toTypedSchema(zodValidation.credentials())
 const { handleSubmit, errors, meta, isSubmitting } = useForm({ validationSchema })
 
 const { value: email } = useField('email')
@@ -25,11 +19,9 @@ const { value: password } = useField('password')
 
 const onSubmit = handleSubmit(login)
 
-const apiService = new AuthService(new AxiosAdapter())
-
 async function login () {
   try {
-    await apiService.signin({ email: email.value, password: password.value })
+    await authService.signin({ email: email.value, password: password.value })
     return router.push('/dashboard')
   } catch (e) {
     console.log(e)
@@ -43,7 +35,7 @@ async function login () {
     <v-row>
       <v-col cols="12">
         <h3
-          class="mb-5 text-center py-4 text-2xl font-bold bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent"
+          class="text-center py-4 text-4xl font-bold bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent"
         >
           Login
         </h3>
@@ -52,11 +44,11 @@ async function login () {
     <v-row>
       <v-col
         cols="12"
-        class="py-0"
+        class="space-y-4 flex flex-col justify-center"
       >
         <v-text-field
-          class="mb-4"
           label="Email"
+          type="email"
           required
           :error-messages="errors.email"
           v-model="email"
@@ -70,21 +62,8 @@ async function login () {
           :error-messages="errors.password"
           v-model="password"
         />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col
-        cols="12"
-        class="flex justify-between items-center"
-      >
-        <v-checkbox
-          value="1"
-          label="Lembrar Senha"
-          type="checkbox"
-          required
-          class="p-0 flex items-center"
-        />
         <v-btn
+          class="mt-0"
           variant="plain"
           @click.prevent="router.push('/resetPassword')"
         >
@@ -104,9 +83,9 @@ async function login () {
           :disabled="!meta.valid"
         >
           <span v-if="!isSubmitting">Entrar</span>
-          <span
+          <Loader2
             v-else
-            class="mdi mdi-loading"
+            class="animate-spin"
           />
         </v-btn>
         <v-btn
@@ -132,20 +111,23 @@ async function login () {
     <v-row>
       <v-col
         cols="12"
-        class="py-4 flex justify-center items-center gap-2"
+        class="py-4 flex justify-center items-center gap-4 relative"
       >
-        <v-btn
-          variant="tonal"
-          icon="mdi mdi-google"
-        />
-        <v-btn
-          variant="tonal"
-          icon="mdi mdi-facebook"
-        />
-        <v-btn
-          variant="tonal"
-          icon="mdi mdi-linkedin"
-        />
+        <img
+          src="/google_2504914.png"
+          alt=""
+          class="border h-10 cursor-pointer rounded-xl hover:shadow-xl transition-all duration-300"
+        >
+        <img
+          src="/facebook_2504903.png"
+          alt=""
+          class="border h-10 cursor-pointer rounded-xl hover:shadow-xl transition-all duration-300"
+        >
+        <img
+          src="/linkedin_2504923.png"
+          alt=""
+          class="border h-10 cursor-pointer rounded-xl hover:shadow-xl transition-all duration-300"
+        >
       </v-col>
     </v-row>
   </v-form>
