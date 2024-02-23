@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import { useTheme } from 'vuetify/lib/framework.mjs'
+
+const theme: any = useTheme()
+
+</script>
+
 <template>
   <v-container class="flex justify-center items-center h-screen">
     <v-col
@@ -10,7 +17,8 @@
       xxl="2"
     >
       <v-card
-        class="p-10 border shadow-sm"
+        class="p-10 border border-zinc-100"
+        :class="{'border-zinc-800': theme.global.current.value.dark}"
         elevation="0"
       >
         <router-view />
