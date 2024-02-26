@@ -13,6 +13,7 @@ import { createApp } from 'vue'
 import { AuthService } from './service'
 import AxiosAdapter from './infra/AxiosAdapter'
 import ZodSchemas from './helpers/validations/ZodSchemas'
+import { useToast, useSidebar } from '@/composable'
 
 const app = createApp(App)
 
@@ -25,7 +26,10 @@ const zodSchemas = new ZodSchemas(zod)
 app.provide('authService', authService)
 app.provide('zodSchemas', zodSchemas)
 app.provide('icons', LucideIcons)
+app.provide('useToast', useToast)
+app.provide('useSidebar', useSidebar)
 
-app.mount('#app')
 app.component('AuthLayout', layouts.AuthLayout)
 app.component('DashboardLayout', layouts.DashboardLayout)
+
+app.mount('#app')

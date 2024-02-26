@@ -3,6 +3,7 @@ import { ref, inject } from 'vue'
 import { useRouter } from 'vue-router';
 import { useForm, useField } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
+import Cookies from 'js-cookie'
 
 const showPassword = ref<boolean>(false)
 const router = useRouter()
@@ -21,7 +22,8 @@ const onSubmit = handleSubmit(login)
 
 async function login () {
   try {
-    await authService.signin({ email: email.value, password: password.value })
+    const response = await authService.signin({ email: email.value, password: password.value })
+    Cookies.set('access-token', response.data.token, { expires: 1 })
     return router.push('/dashboard')
   } catch (e) {
     console.log(e)
