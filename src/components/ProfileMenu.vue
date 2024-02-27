@@ -5,7 +5,7 @@ const items = ['Profile', 'Configurações', 'Sair']
 
 <template>
   <v-list class="p-4">
-    <v-card elevation="0">
+    <v-card>
       <v-list-item
         class="font-semibold"
         prepend-avatar="https://cdn.vuetifyjs.com/images/john.jpg"
@@ -14,10 +14,7 @@ const items = ['Profile', 'Configurações', 'Sair']
         <template #subtitle>
           <span class="flex items-center justify-between">
             Founder of App
-            <v-menu
-              location="bottom"
-              elevation="0"
-            >
+            <v-menu>
               <template #activator="{ props }">
                 <v-btn
                   class="h-6 w-6"
@@ -27,11 +24,7 @@ const items = ['Profile', 'Configurações', 'Sair']
                   v-bind="props"
                 />
               </template>
-              <v-list
-                elevation="0"
-                class="shadow-md"
-                density="compact"
-              >
+              <v-list class="shadow-md">
                 <v-list-item
                   v-for="(item, index) in items"
                   :key="index"

@@ -15,7 +15,6 @@ function toggleTheme () {
 
 <template>
   <v-app-bar
-    flat
     title="Expense Organize"
   >
     <template #prepend>

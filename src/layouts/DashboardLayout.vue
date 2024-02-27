@@ -11,7 +11,6 @@ const { isOpen }: any = inject('useSidebar')
   <v-layout>
     <v-navigation-drawer
       v-model="isOpen"
-      floating
     >
       <ProfileMenu />
 
@@ -22,7 +21,7 @@ const { isOpen }: any = inject('useSidebar')
 
     <AppBar />
 
-    <v-main class="d-flex align-center justify-center h-screen">
+    <v-main class="flex h-screen w-screen overflow-y-auto">
       <router-view />
     </v-main>
   </v-layout>

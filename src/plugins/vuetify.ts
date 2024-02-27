@@ -10,7 +10,6 @@ export default createVuetify({
     VBtn: {
       elevation: '0',
       class: [
-        // 'rounded-md',
         'tracking-normal',
         'normal-case'
       ]
@@ -27,14 +26,28 @@ export default createVuetify({
       density: 'compact'
     },
     VCard: {
-      elevation: '1',
+      elevation: '0',
       class: [
-        'rounded-md'
+        'rounded-md',
       ]
+    },
+    VList: {
+      density: 'compact',
+      elevation: '0'
+    },
+    VMenu: {
+      location: 'bottom',
+      elevation: '0'
+    },
+    VNavigationDrawer: {
+      floating: true
+    },
+    VAppBar: {
+      flat: true
     }
   },
   theme: {
-    defaultTheme: 'dark',
+    defaultTheme: 'light',
     themes: {
       light: {
         colors: {
@@ -56,20 +69,20 @@ export default createVuetify({
         variables: {
           // 'border-color': 'rgb(228, 228, 231)',
           // 'border-opacity': 0.12,
-        //   'high-emphasis-opacity': 0.87,
-        //   'medium-emphasis-opacity': 0.60,
-        //   'disabled-opacity': 0.38,
-        //   'idle-opacity': 0.04,
-        //   'hover-opacity': 0.04,
-        //   'focus-opacity': 0.12,
-        //   'selected-opacity': 0.08,
-        //   'activated-opacity': 0.12,
-        //   'pressed-opacity': 0.12,
-        //   'dragged-opacity': 0.08,
-        //   'theme-kbd': '#212529',
-        //   'theme-on-kbd': '#FFFFFF',
-        //   'theme-code': '#F5F5F5',
-        //   'theme-on-code': '#000000',
+          //   'high-emphasis-opacity': 0.87,
+          //   'medium-emphasis-opacity': 0.60,
+          //   'disabled-opacity': 0.38,
+          //   'idle-opacity': 0.04,
+          //   'hover-opacity': 0.04,
+          //   'focus-opacity': 0.12,
+          //   'selected-opacity': 0.08,
+          //   'activated-opacity': 0.12,
+          //   'pressed-opacity': 0.12,
+          //   'dragged-opacity': 0.08,
+          //   'theme-kbd': '#212529',
+          //   'theme-on-kbd': '#FFFFFF',
+          //   'theme-code': '#F5F5F5',
+          //   'theme-on-code': '#000000',
         }
       }
     }
