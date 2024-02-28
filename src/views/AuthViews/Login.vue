@@ -79,8 +79,8 @@ async function login () {
         class="flex flex-col gap-4"
       >
         <v-btn
-          :loading="!isSubmitting"
-          class="w-full shadow-sm"
+          :loading="isSubmitting"
+          class="w-full shadow-sm antialiased"
           variant="tonal"
           type="submit"
           :disabled="!meta.valid"
