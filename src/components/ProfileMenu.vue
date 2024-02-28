@@ -5,7 +5,7 @@ const items = ['Profile', 'Configurações', 'Sair']
 
 <template>
   <v-list class="p-4">
-    <v-card>
+    <v-card class="transition-none">
       <v-list-item
         class="font-semibold"
         prepend-avatar="https://cdn.vuetifyjs.com/images/john.jpg"

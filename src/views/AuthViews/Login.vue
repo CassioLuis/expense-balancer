@@ -79,16 +79,17 @@ async function login () {
         class="flex flex-col gap-4"
       >
         <v-btn
+          :loading="!isSubmitting"
           class="w-full shadow-sm"
           variant="tonal"
           type="submit"
           :disabled="!meta.valid"
         >
-          <span v-if="!isSubmitting">Entrar</span>
+          <!-- <span v-if="!isSubmitting">Entrar</span>
           <Loader2
             v-else
             class="animate-spin"
-          />
+          /> -->
         </v-btn>
         <v-btn
           variant="plain"

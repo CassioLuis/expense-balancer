@@ -18,36 +18,31 @@ class ChartConfig {
         grid: {
           show: true
         },
-        dataLabels: {
-          style: {
-            colors: ['#FF0000', '#00FF00', '#0000FF']
-          }
-        },
         chart: {
           height: 'auto',
           width: '100%',
           type: this.type
         },
         xaxis: this.xaxis,
-        responsive: [
-          /*
-            xs  < 600px
-            sm	600px > < 960px
-            md  960px > < 1280px
-            lg	1280px > < 1920px
-            xl	1920px > < 2560px
-            xxl	> 2560px
-          */
-          {
-            breakpoint: 1000, // <1000
-            options: {
-              chart: {
-                height: '100%',
-                width: '100%',
-              }
-            }
-          }
-        ]
+        // responsive: [
+        //   /*
+        //     xs  < 600px
+        //     sm	600px > < 960px
+        //     md  960px > < 1280px
+        //     lg	1280px > < 1920px
+        //     xl	1920px > < 2560px
+        //     xxl	> 2560px
+        //   */
+        //   {
+        //     breakpoint: 1000, // <1000
+        //     options: {
+        //       chart: {
+        //         height: '100%',
+        //         width: '100%',
+        //       }
+        //     }
+        //   }
+        // ]
       }
     }
     this.area = {
@@ -133,7 +128,7 @@ const charts = [
         :md="cols.md"
         :lg="cols.lg"
       >
-        <v-card>
+        <v-card class="transition-none">
           <ChartComponent
             class="p-10 shadow-sm"
             :type="chartOptions.chart.type"
