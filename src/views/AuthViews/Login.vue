@@ -85,11 +85,7 @@ async function login () {
           type="submit"
           :disabled="!meta.valid"
         >
-          <!-- <span v-if="!isSubmitting">Entrar</span>
-          <Loader2
-            v-else
-            class="animate-spin"
-          /> -->
+          Entrar
         </v-btn>
         <v-btn
           variant="plain"
