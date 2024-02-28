@@ -8,7 +8,6 @@ import Cookies from 'js-cookie'
 const showPassword = ref<boolean>(false)
 const router = useRouter()
 
-const { Loader2 }: any = inject('icons')
 const authService: any = inject('authService')
 const zodValidation: any = inject('zodSchemas')
 

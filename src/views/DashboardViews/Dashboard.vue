@@ -1,144 +1,100 @@
 <script setup lang="ts">
+import { inject } from 'vue'
 
-class ChartConfig {
-  bar: any
-  area: any
-  cols: any
+const { Bar, Doughnut }: any = inject('Chart')
 
-  constructor(private readonly type: any, private readonly series: any, private readonly xaxis: any) {
-    this.bar = {
-      series: this.series,
-      cols: {
-        xs: '12',
-        sm: '12',
-        md: '6',
-        lg: '6'
-      },
-      chartOptions: {
-        grid: {
-          show: true
-        },
-        chart: {
-          height: 'auto',
-          width: '100%',
-          type: this.type
-        },
-        xaxis: this.xaxis,
-        // responsive: [
-        //   /*
-        //     xs  < 600px
-        //     sm	600px > < 960px
-        //     md  960px > < 1280px
-        //     lg	1280px > < 1920px
-        //     xl	1920px > < 2560px
-        //     xxl	> 2560px
-        //   */
-        //   {
-        //     breakpoint: 1000, // <1000
-        //     options: {
-        //       chart: {
-        //         height: '100%',
-        //         width: '100%',
-        //       }
-        //     }
-        //   }
-        // ]
+const bar = {
+  data: {
+    labels: ['January', 'February', 'March', 'January', 'February', 'March'],
+    datasets: [{ data: [40, 20, 12, 40, 20, 12] }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+  }
+}
+
+const doughnut = {
+  data: {
+    labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+    datasets: [
+      {
+        backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+        data: [40, 20, 80, 10]
       }
-    }
-    this.area = {
-      series: this.series,
-      cols: {
-        xs: '12',
-        sm: '12',
-        md: '6',
-        lg: '6'
-      },
-      chartOptions: {
-        grid: {
-          show: false
-        },
-        chart: {
-          height: 'auto',
-          width: '100%',
-          type: this.type
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          curve: 'smooth'
-        },
-        xaxis: this.xaxis,
-        tooltip: {
-          x: {
-            format: 'dd/MM/yy HH:mm'
-          },
+    ],
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    plugins: {
+      legend: {
+        display: false,
+        position: 'right',
+        labels: {
+          color: 'white',
+          font: {
+            size: 14,
+          }
         }
       }
     }
   }
 }
-
-const areaChart = new ChartConfig('area',
-  [
-    {
-      name: 'series1',
-      data: [31, 40, 28, 51, 42, 109, 100]
-    },
-    {
-      name: 'series2',
-      data: [11, 32, 45, 32, 34, 52, 41]
-    }
-  ],
-  {
-    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-  }
-)
-
-const barChart = new ChartConfig('bar',
-  [
-    {
-      name: 'sales',
-      data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
-    }
-  ],
-  {
-    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-  }
-)
-
-
-const charts = [
-  areaChart.area,
-  barChart.bar
-]
 </script>
 
 <template>
-  <v-container>
-    <v-row
-      dense
-      class="flex justify-between"
+  <v-row
+    dense
+    class="flex justify-between"
+  >
+    <h1 class="pl-3 font-semibold text-xl mb-4">
+      Dashboard
+    </h1>
+    <v-col
+      xs="12"
+      sm="12"
+      md="12"
+      lg="12"
+      class="p-3"
     >
-      <v-col
-        v-for="({ cols, chartOptions, series }, idx) in charts"
-        :key="idx"
-        :xs="cols.xs"
-        :sm="cols.sm"
-        :md="cols.md"
-        :lg="cols.lg"
-      >
-        <v-card class="transition-none">
-          <ChartComponent
-            class="p-10 shadow-sm"
-            :type="chartOptions.chart.type"
-            :width="chartOptions.chart.width"
-            :height="chartOptions.chart.height"
-            :options="chartOptions"
-            :series="series"
+      <v-card class="p-10 shadow-sm rounded-xl">
+        <v-card-title class="mb-10 p-0">
+          Resumo Mensal
+        </v-card-title>
+        <div class="w-full h-full flex flex-wrap justify-center gap-2">
+          <Doughnut
+            class="h-36 w-36"
+            :data="doughnut.data"
+            :options="doughnut.options"
           />
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+          <Doughnut
+            class="h-36 w-36"
+            :data="doughnut.data"
+            :options="doughnut.options"
+          />
+          <Doughnut
+            class="h-36 w-36"
+            :data="doughnut.data"
+            :options="doughnut.options"
+          />
+        </div>
+      </v-card>
+    </v-col>
+    <v-col
+      xs="12"
+      sm="12"
+      md="12"
+      lg="12"
+      class="p-3"
+    >
+      <v-card class="p-10 shadow-sm rounded-xl">
+        <v-card-title>BarChart</v-card-title>
+        <Bar
+          :data="bar.data"
+          :options="bar.options"
+        />
+      </v-card>
+    </v-col>
+  </v-row>
 </template>

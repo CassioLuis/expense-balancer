@@ -1,31 +1,29 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { defineProps } from 'vue'
+import defaultConfigs from '@/vue-apexcharts-config'
 
-defineProps<{
+const props = defineProps<{
   options?: any
   series?: any
 }>()
-// const options = {
-//   chart: {
-//     type: 'line'
-//   },
-//   series: [{
-//     name: 'sales',
-//     data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
-//   }],
-//   xaxis: {
-//     categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-//   }
-// }
+
+const barConfig = {
+  series: props.series,
+  chartOptions: {
+    chart: {
+      type: 'bar'
+    }
+  }
+}
 </script>
 
 <template>
   <v-card>
-    <Chart
-      width="500"
+    <ChartComponent
       type="bar"
-      :options="options"
-      :series="options?.series"
+      class="p-10"
+      :options="defaultConfigs"
+      :series="barConfig?.series"
     />
   </v-card>
-</template>
+</template> -->

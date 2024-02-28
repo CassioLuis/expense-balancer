@@ -29,6 +29,7 @@ export default createVuetify({
       elevation: '0',
       class: [
         'rounded-md',
+        'transition-none'
       ]
     },
     VList: {
@@ -50,8 +51,8 @@ export default createVuetify({
     defaultTheme: 'light',
     themes: {
       light: {
-        colors: {
-          background: 'rgb(250, 250, 250)',
+        colors: { // 248 250 252
+          background: 'rgb(241, 245, 249)',
           // surface: '#FFFFFF',
           // 'surface-bright': '#FFFFFF',
           // 'surface-light': '#EEEEEE',

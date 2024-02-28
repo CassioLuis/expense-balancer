@@ -2,9 +2,10 @@
 import { inject } from 'vue'
 import { useTheme } from 'vuetify/lib/framework.mjs'
 
-const { Sun, Moon, ChevronRight }: any = inject('icons')
+const { Sun, Moon, ChevronRight, Menu }: any = inject('icons')
 
 const { isOpen }: any = inject('useSidebar')
+const { isOpenSummary }: any = inject('useSummary')
 
 const theme = useTheme()
 
@@ -14,9 +15,7 @@ function toggleTheme () {
 </script>
 
 <template>
-  <v-app-bar
-    title="Expense Organize"
-  >
+  <v-app-bar title="Expense Organize">
     <template #prepend>
       <v-btn
         icon
@@ -37,6 +36,15 @@ function toggleTheme () {
       <Sun
         v-else
         class="text-sm w-5 text-orange-500"
+      />
+    </v-btn>
+    <v-btn
+      density="comfortable"
+      @click="isOpenSummary = !isOpenSummary"
+      icon
+    >
+      <Menu
+        class="text-sm w-5"
       />
     </v-btn>
   </v-app-bar>

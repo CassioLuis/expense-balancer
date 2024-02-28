@@ -39,5 +39,3 @@ import DashboardRoutes from '../router/dashboardRoutes'
     <v-list-subheader>Gestão</v-list-subheader>
   </v-list>
 </template>
-../router/DashboardLayoutRoutes/dashboardRoutes
-../router/dashboardRoutes

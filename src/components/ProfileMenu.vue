@@ -1,11 +1,26 @@
 <script setup lang="ts">
-const items = ['Profile', 'Configurações', 'Sair']
+import Cookies from 'js-cookie';
+import { useRouter } from 'vue-router'
+
+const route = useRouter()
+
+const items = [
+  { name: 'Profile' },
+  { name: 'Configurações' },
+  {
+    name: 'Sair',
+    action: () => {
+      Cookies.remove('access-token')
+      route.push('/login')
+    }
+  }
+]
 
 </script>
 
 <template>
   <v-list class="p-4">
-    <v-card class="transition-none">
+    <v-card>
       <v-list-item
         class="font-semibold"
         prepend-avatar="https://cdn.vuetifyjs.com/images/john.jpg"
@@ -30,7 +45,10 @@ const items = ['Profile', 'Configurações', 'Sair']
                   :key="index"
                   :value="index"
                 >
-                  <v-list-item-title class="font-semibold text-sm">{{ item }}</v-list-item-title>
+                  <v-list-item-title
+                    @click="item.action"
+                    class="font-semibold text-sm"
+                  >{{ item.name }}</v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-menu>
