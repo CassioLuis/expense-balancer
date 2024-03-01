@@ -50,7 +50,7 @@ export default createVuetify({
     }
   },
   theme: {
-    defaultTheme: theme,
+    defaultTheme: theme || 'dark',
     themes: {
       light: {
         colors: {
