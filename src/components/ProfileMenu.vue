@@ -32,10 +32,9 @@ const items = [
             <v-menu>
               <template #activator="{ props }">
                 <v-btn
-                  class="h-6 w-6"
+                  class="h-6 w-6 bg-purple-500 text-white font-semibold"
                   icon="mdi-chevron-down"
                   size="small"
-                  variant="tonal"
                   v-bind="props"
                 />
               </template>

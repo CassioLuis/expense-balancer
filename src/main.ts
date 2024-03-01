@@ -16,6 +16,7 @@ import { AuthService } from './service'
 import AxiosAdapter from './infra/AxiosAdapter'
 import ZodSchemas from './helpers/validations/ZodSchemas'
 import { useToast, useSidebar, useSummary } from '@/composable'
+import ExepenseService from './service/ExpenseService'
 
 ChartJs.register(...registerables)
 
@@ -25,9 +26,12 @@ registerPlugins(app)
 
 const httpAdapter = new AxiosAdapter()
 const authService = new AuthService(httpAdapter)
+const expenseService = new ExepenseService(httpAdapter)
 const zodSchemas = new ZodSchemas(zod)
 
 app.provide('authService', authService)
+app.provide('expenseService', expenseService)
+
 app.provide('zodSchemas', zodSchemas)
 app.provide('icons', lucideIcons)
 app.provide('useToast', useToast)

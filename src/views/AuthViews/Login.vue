@@ -20,13 +20,14 @@ const { value: password } = useField('password')
 const onSubmit = handleSubmit(login)
 
 async function login () {
-  try {
-    const response = await authService.signin({ email: email.value, password: password.value })
-    Cookies.set('access-token', response.data.token, { expires: 1 })
-    return router.push('/dashboard')
-  } catch (e) {
-    console.log(e)
+  const user = {
+    email: email.value,
+    password: password.value
   }
+
+  const reponse = await authService.signin(user)
+  Cookies.set('access-token', reponse.token, { expires: 1 })
+  return router.push('/dashboard')
 }
 
 </script>

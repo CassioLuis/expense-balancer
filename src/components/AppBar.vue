@@ -10,7 +10,13 @@ const { isOpenSummary }: any = inject('useSummary')
 const theme = useTheme()
 
 function toggleTheme () {
-  theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+  if (theme.global.name.value === 'dark') {
+    theme.global.name.value = 'light'
+    localStorage.setItem('theme', 'light')
+    return
+  }
+  theme.global.name.value = 'dark'
+  localStorage.setItem('theme', 'dark')
 }
 </script>
 
@@ -43,9 +49,7 @@ function toggleTheme () {
       @click="isOpenSummary = !isOpenSummary"
       icon
     >
-      <Menu
-        class="text-sm w-5"
-      />
+      <Menu class="text-sm w-5" />
     </v-btn>
   </v-app-bar>
 </template>

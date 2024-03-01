@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { inject } from 'vue'
+import DefaultViewVue from './DefaultView.vue';
 
 const { Bar, Doughnut }: any = inject('Chart')
 
@@ -44,57 +45,53 @@ const doughnut = {
 </script>
 
 <template>
-  <v-row
-    dense
-    class="flex justify-between"
-  >
-    <h1 class="pl-3 font-semibold text-xl mb-4">
+  <DefaultViewVue>
+    <template #viewTitle>
       Dashboard
-    </h1>
-    <v-col
-      xs="12"
-      sm="12"
-      md="12"
-      lg="12"
-      class="p-3"
-    >
-      <v-card class="p-10 shadow-sm rounded-xl">
-        <v-card-title class="mb-10 p-0">
-          Resumo Mensal
-        </v-card-title>
-        <div class="w-full h-full flex flex-wrap justify-center gap-2">
-          <Doughnut
-            class="h-36 w-36"
-            :data="doughnut.data"
-            :options="doughnut.options"
+    </template>
+    <template #viewContent>
+      <v-col cols="12">
+        <v-card class="p-10 shadow-sm rounded-xl">
+          <v-card-title class="mb-10 p-0">
+            Resumo Mensal
+          </v-card-title>
+          <div class="w-full h-full flex flex-wrap justify-center gap-2">
+            <Doughnut
+              class="h-36 w-36"
+              :data="doughnut.data"
+              :options="doughnut.options"
+            />
+            <Doughnut
+              class="h-36 w-36"
+              :data="doughnut.data"
+              :options="doughnut.options"
+            />
+            <Doughnut
+              class="h-36 w-36"
+              :data="doughnut.data"
+              :options="doughnut.options"
+            />
+          </div>
+        </v-card>
+      </v-col>
+      <v-col cols="12">
+        <v-card class="p-10 shadow-sm rounded-xl">
+          <v-card-title>BarChart</v-card-title>
+          <Bar
+            :data="bar.data"
+            :options="bar.options"
           />
-          <Doughnut
-            class="h-36 w-36"
-            :data="doughnut.data"
-            :options="doughnut.options"
+        </v-card>
+      </v-col>
+      <v-col cols="12">
+        <v-card class="p-10 shadow-sm rounded-xl">
+          <v-card-title>BarChart</v-card-title>
+          <Bar
+            :data="bar.data"
+            :options="bar.options"
           />
-          <Doughnut
-            class="h-36 w-36"
-            :data="doughnut.data"
-            :options="doughnut.options"
-          />
-        </div>
-      </v-card>
-    </v-col>
-    <v-col
-      xs="12"
-      sm="12"
-      md="12"
-      lg="12"
-      class="p-3"
-    >
-      <v-card class="p-10 shadow-sm rounded-xl">
-        <v-card-title>BarChart</v-card-title>
-        <Bar
-          :data="bar.data"
-          :options="bar.options"
-        />
-      </v-card>
-    </v-col>
-  </v-row>
+        </v-card>
+      </v-col>
+    </template>
+  </DefaultViewVue>
 </template>

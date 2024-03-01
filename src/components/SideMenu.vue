@@ -9,13 +9,18 @@ import DashboardRoutes from '../router/dashboardRoutes'
     density="compact"
     nav
   >
-    <v-list-subheader>Home</v-list-subheader>
+    <v-list-subheader>
+      Home
+    </v-list-subheader>
     <v-list-item
       v-for="({ path, name, meta }) of DashboardRoutes"
       :key="name"
       :title="name"
       :active="$route.path === path"
       :to="path"
+      :class="{
+        'bg-purple-500 text-white': $route.path === path
+      }"
     >
       <template #prepend>
         <svg
@@ -36,6 +41,8 @@ import DashboardRoutes from '../router/dashboardRoutes'
         </svg>
       </template>
     </v-list-item>
-    <v-list-subheader>Gestão</v-list-subheader>
+    <v-list-subheader>
+      Gestão
+    </v-list-subheader>
   </v-list>
 </template>

@@ -1,10 +1,30 @@
+<script setup lang="ts">
+import { inject, reactive } from 'vue'
+import DefaultView from './DefaultView.vue'
+
+const expenseService: any = inject('expenseService')
+
+const { data } = await expenseService.getByUser()
+
+console.log(data)
+const api = reactive(data)
+
+// watch(expenses, (vl) => {
+//   console.log(vl)
+//   // data.push(newVl)
+// })
+
+console.log(data)
+
+</script>
+
 <template>
-  <v-row
-    dense
-    class="flex justify-between"
-  >
-    <h1 class="pl-3 font-semibold text-xl mb-4">
+  <DefaultView>
+    <template #viewTitle>
       Despesas
-    </h1>
-  </v-row>
+    </template>
+    <template #viewContent>
+      {{ api }}
+    </template>
+  </DefaultView>
 </template>

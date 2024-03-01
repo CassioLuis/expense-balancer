@@ -6,6 +6,9 @@ const env: Record<string, Record<string, string>> = {
   },
   production: {
     BASE_URL: import.meta.env.VITE_RENDER_URL
+  },
+  test: {
+    BASE_URL: import.meta.env.VITE_DEV_URL
   }
 }
 

@@ -5,6 +5,8 @@ import 'vuetify/styles'
 // Composables
 import { createVuetify } from 'vuetify'
 
+const theme: any = localStorage.getItem('theme')
+
 export default createVuetify({
   defaults: {
     VBtn: {
@@ -48,11 +50,11 @@ export default createVuetify({
     }
   },
   theme: {
-    defaultTheme: 'light',
+    defaultTheme: theme,
     themes: {
       light: {
-        colors: { // 248 250 252
-          background: 'rgb(241, 245, 249)',
+        colors: {
+          background: 'rgb(244, 244, 245)',
           // surface: '#FFFFFF',
           // 'surface-bright': '#FFFFFF',
           // 'surface-light': '#EEEEEE',
