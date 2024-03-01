@@ -3,12 +3,12 @@ import { ref, inject } from 'vue'
 import { useRouter } from 'vue-router';
 import { useForm, useField } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
-import Cookies from 'js-cookie'
+
 
 const showPassword = ref<boolean>(false)
 const router = useRouter()
 
-const authService: any = inject('authService')
+const authUseCase: any = inject('authUseCase')
 const zodValidation: any = inject('zodSchemas')
 
 const validationSchema = toTypedSchema(zodValidation.credentials())
@@ -17,16 +17,15 @@ const { handleSubmit, errors, meta, isSubmitting } = useForm({ validationSchema 
 const { value: email } = useField('email')
 const { value: password } = useField('password')
 
-const onSubmit = handleSubmit(login)
+const onSubmit = handleSubmit(signin)
 
-async function login () {
+async function signin () {
   const user = {
     email: email.value,
     password: password.value
   }
 
-  const reponse = await authService.signin(user)
-  Cookies.set('access-token', reponse.token, { expires: 1 })
+  await authUseCase.signin(user)
   return router.push('/dashboard')
 }
 

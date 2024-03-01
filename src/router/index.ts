@@ -2,10 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { LandingPage } from '@/views'
 import AuthLayoutRoutes from './authRoutes'
 import DashboardLayoutRoutes from './dashboardRoutes'
-import Cookies from 'js-cookie'
 import { useToast } from '@/composable'
+import { CookiesGateway } from '@/application/gateways'
+import JsCookiesAdapter from '@/helpers/JsCookiesAdapter'
 
 const { toast } = useToast
+
+const cookiesAdapter = new JsCookiesAdapter()
+const cookiesGateway = new CookiesGateway(cookiesAdapter)
 
 const routes = [
   ...AuthLayoutRoutes,
@@ -22,8 +26,8 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach((to) => {
-  const token = Cookies.get('access-token')
+router.beforeEach(to => {
+  const token = cookiesGateway.get('access-token')
 
   if (to.meta.requiresAuth && !token) {
     toast('Sessão Expirada. Efetue o login!')

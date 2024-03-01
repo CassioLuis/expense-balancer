@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import Cookies from 'js-cookie';
-import { useRouter } from 'vue-router'
+import { inject } from 'vue'
+import { useRouter } from 'vue-router';
 
-const route = useRouter()
+const authUseCase: any = inject('authUseCase')
+const router = useRouter()
 
 const items = [
   { name: 'Profile' },
@@ -10,8 +11,8 @@ const items = [
   {
     name: 'Sair',
     action: () => {
-      Cookies.remove('access-token')
-      route.push('/login')
+      authUseCase.signout()
+      router.push('/login')
     }
   }
 ]
@@ -47,7 +48,8 @@ const items = [
                   <v-list-item-title
                     @click="item.action"
                     class="font-semibold text-sm"
-                  >{{ item.name }}</v-list-item-title>
+                  >{{ item.name
+                  }}</v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-menu>

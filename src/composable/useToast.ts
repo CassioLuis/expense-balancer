@@ -12,9 +12,14 @@ function toast (message: string, time: number = DEFAULT_TIME_OUT) {
   toastMessage.value = message
 }
 
+function toastPrevent () {
+  onToast.value = false
+}
+
 export default {
   toastMessage,
   timeOut,
   onToast,
-  toast
+  toast,
+  toastPrevent
 }

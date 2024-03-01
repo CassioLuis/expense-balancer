@@ -5,7 +5,11 @@ export default class AxiosAdapter implements IHttpAdapter {
 
   async get (url: string, body: any) {
     try {
-      return await axios.get(url, body)
+      const { data, status } = await axios.get(url, body)
+      return {
+        data,
+        status
+      }
     } catch ({ response }: any) {
       return {
         status: response.status,
@@ -16,7 +20,11 @@ export default class AxiosAdapter implements IHttpAdapter {
 
   async post (url: string, body: object) {
     try {
-      return await axios.post(url, body)
+      const { data, status } = await axios.post(url, body)
+      return {
+        data,
+        status
+      }
     } catch ({ response }: any) {
       return {
         status: response.status,
