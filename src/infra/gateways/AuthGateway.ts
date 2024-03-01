@@ -1,5 +1,5 @@
-import IHttpAdapter from '@/infra/IHttpAdapter'
-import env from '../../infra/env'
+import IHttpAdapter from '@/infra/http/IHttpAdapter'
+import env from '../env'
 
 
 export default class AuthGateway {

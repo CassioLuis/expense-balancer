@@ -1,4 +1,4 @@
-import { AuthGateway, CookiesGateway } from "../gateways";
+import { AuthGateway, CookiesGateway } from "../../infra/gateways";
 
 export default class AuthUseCase {
 
@@ -10,7 +10,7 @@ export default class AuthUseCase {
   async signin (credentials: object) {
     const response = await this.authGateway.signin(credentials)
     const expires = 1 // day
-    this.cookiesGateway.set('access-token', response, { expires })
+    this.cookiesGateway.set('access-token', response.data.token, { expires })
     return response
   }
 

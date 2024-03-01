@@ -3,7 +3,7 @@ import { LandingPage } from '@/views'
 import AuthLayoutRoutes from './authRoutes'
 import DashboardLayoutRoutes from './dashboardRoutes'
 import { useToast } from '@/composable'
-import { CookiesGateway } from '@/application/gateways'
+import { CookiesGateway } from '@/infra/gateways'
 import JsCookiesAdapter from '@/helpers/JsCookiesAdapter'
 
 const { toast } = useToast
